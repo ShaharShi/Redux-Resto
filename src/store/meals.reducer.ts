@@ -1,3 +1,4 @@
+import { IMeal } from "components/ui-components/meal";
 import { ACTIONS } from "./actions.config";
 
 export const initMealsState = {
@@ -19,15 +20,19 @@ export default function mealsReducer(state: any, action: IProps) {
       const { payload } = action;
       return { ...state, orders: [...state.orders, payload] };
     }
+    case ACTIONS.REMOVE_MEAL: {
+      const { payload } = action;
+      const ordersWithoutDeleteMeal = state.orders.filter(
+        (order: IMeal) => order.name !== payload.name
+      );
+      return { ...state, orders: [...ordersWithoutDeleteMeal] };
+    }
+    case ACTIONS.CLEAR_MEALS: {
+      return { ...state, orders: [] };
+    }
     case ACTIONS.GET_MEALS_FROM_SERVER_DONE: {
       const { payload } = action;
       return { ...state, meals: payload };
-    }
-    case "REMOVE_MEAL": {
-      const { payload } = action;
-      // find index blabla // delete
-      const newOrders = [...state.orders];
-      return { ...state, orders: [...newOrders] };
     }
     default: {
       console.log("i am here! this is not your reducer!!");

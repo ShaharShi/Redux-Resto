@@ -7,6 +7,17 @@ export function addMealAction(payload: IMeal) {
     payload,
   };
 }
+export function removeMealAction(payload: IMeal) {
+  return {
+    type: ACTIONS.REMOVE_MEAL,
+    payload,
+  };
+}
+export function clearMealsAction() {
+  return {
+    type: ACTIONS.CLEAR_MEALS,
+  };
+}
 
 export function getMealsFromServerDone(payload: Array<any>) {
   return {

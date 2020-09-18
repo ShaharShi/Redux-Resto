@@ -3,9 +3,10 @@ import { MealsContext } from "App";
 import Meal, { IMeal } from "components/ui-components/meal";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
+import { removeMealAction, clearMealsAction } from "store/meals.actions";
 
 export default function OrdersPage() {
-  const [state, setState] = useContext(MealsContext);
+  const [state, dispatch] = useContext(MealsContext);
   const { orders } = state;
   function getTotalCal() {
     const total = orders.reduce((total: number, order: any) => {
@@ -17,10 +18,10 @@ export default function OrdersPage() {
   }
 
   function removeMeal(meal: IMeal) {
-    const ordersWithoutDeleteMeal = orders.filter(
-      (order: IMeal) => order.name !== meal.name
-    );
-    setState({ ...state, orders: ordersWithoutDeleteMeal });
+    dispatch(removeMealAction(meal));
+  }
+  function clearMeals() {
+    dispatch(clearMealsAction());
   }
   return (
     <div>
@@ -36,7 +37,7 @@ export default function OrdersPage() {
           <Button
             className={"pull-right"}
             onClick={() => {
-              setState({ ...state, orders: [] });
+              clearMeals();
             }}
             variant="danger"
             size="lg"

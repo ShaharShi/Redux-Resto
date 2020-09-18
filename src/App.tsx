@@ -12,10 +12,7 @@ export const ConfigurationContext: any = React.createContext(null);
 
 function App() {
   const [stateMeals, dispatchMeals] = useReducer(mealsReducer, initMealsState);
-  const [stateConfig, dispatchConfig] = useReducer(
-    configReducer,
-    initConfigState
-  );
+  const [stateConfig, dispatchConfig] = useReducer( configReducer, initConfigState);
 
   return (
     <Router>
