@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { MealsContext } from "App";
 import axios from "axios";
 import Meal, { IMeal } from "components/ui-components/meal";
-import { addMealAction, getMealsFromServerDone } from "store/meals.actions";
+import { addMealAction, getMealsFromServerDone } from "store/meals-reducer/meals.actions";
 
 export default function HomePage() {
   const [state, dispatch] = useContext(MealsContext);

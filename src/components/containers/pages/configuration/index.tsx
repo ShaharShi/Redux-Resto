@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import { ConfigurationContext } from "App";
-import { changeStarsColor } from "store/config.actions";
+import { changeStarsColor } from "store/config-reducer/config.actions";
 
 export default function ConfigurationPage() {
   const [stateConfig, dispatch] = useContext(ConfigurationContext);

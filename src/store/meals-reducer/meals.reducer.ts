@@ -1,5 +1,5 @@
 import { IMeal } from "components/ui-components/meal";
-import { ACTIONS } from "./actions.config";
+import { ACTIONS } from "../actions.config";
 
 export const initMealsState = {
   meals: [],

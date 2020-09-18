@@ -3,7 +3,7 @@ import { MealsContext } from "App";
 import Meal, { IMeal } from "components/ui-components/meal";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
-import { removeMealAction, clearMealsAction } from "store/meals.actions";
+import { removeMealAction, clearMealsAction } from "store/meals-reducer/meals.actions";
 
 export default function OrdersPage() {
   const [state, dispatch] = useContext(MealsContext);
