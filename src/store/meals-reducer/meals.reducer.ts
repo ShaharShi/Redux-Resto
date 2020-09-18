@@ -14,7 +14,7 @@ interface IProps {
   payload: any; // what am i sending
 }
 
-export default function mealsReducer(state: any, action: IProps) {
+export default function mealsReducer(state: any = initMealsState, action: IProps) {
   switch (action.type) {
     case ACTIONS.ADD_MEAL: {
       const { payload } = action;
@@ -35,7 +35,6 @@ export default function mealsReducer(state: any, action: IProps) {
       return { ...state, meals: payload };
     }
     default: {
-      console.log("i am here! this is not your reducer!!");
       return state;
     }
   }

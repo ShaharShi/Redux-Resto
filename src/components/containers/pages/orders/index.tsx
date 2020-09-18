@@ -1,21 +1,14 @@
-import React, { useContext } from "react";
-import { MealsContext } from "App";
+import React from "react";
 import Meal, { IMeal } from "components/ui-components/meal";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { removeMealAction, clearMealsAction } from "store/meals-reducer/meals.actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function OrdersPage() {
-  const [state, dispatch] = useContext(MealsContext);
+  const state = useSelector((state: any) => state.mealsReducer)
+  const dispatch = useDispatch()
   const { orders } = state;
-  function getTotalCal() {
-    const total = orders.reduce((total: number, order: any) => {
-      console.log(parseInt(order.calories));
-      if (isNaN(parseInt(order.calories))) return total;
-      return total + parseInt(order.calories);
-    }, 0);
-    return total;
-  }
 
   function removeMeal(meal: IMeal) {
     dispatch(removeMealAction(meal));
@@ -61,4 +54,14 @@ export default function OrdersPage() {
       </div>
     </div>
   );
+
+  function getTotalCal() {
+    const total = orders.reduce((total: number, order: any) => {
+      console.log(parseInt(order.calories));
+      if (isNaN(parseInt(order.calories))) return total;
+      return total + parseInt(order.calories);
+    }, 0);
+    return total;
+  }
+
 }

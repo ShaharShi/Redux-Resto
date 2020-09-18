@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { Star } from "react-bootstrap-icons";
-import { ConfigurationContext } from "App";
+import { useSelector } from "react-redux";
 
 interface IProps {
   stars: number;
@@ -8,7 +8,8 @@ interface IProps {
 }
 
 export default function Rating(props: IProps) {
-  const [getConfig] = useContext(ConfigurationContext);
+  const state = useSelector((state: any) => state.configReducer)
+  const { starsColor } = state
 
   if (typeof props.stars !== "number") return <span> No rating</span>;
   const roundedStars: number = Math.ceil(props.stars);
@@ -18,7 +19,7 @@ export default function Rating(props: IProps) {
       {numberOfStars.map((_, index) => (
         <Star
           key={index}
-          fill={getConfig.starsColor || "yellow"}
+          fill={starsColor || "yellow"}
           onClick={() => {}}
         />
       ))}
