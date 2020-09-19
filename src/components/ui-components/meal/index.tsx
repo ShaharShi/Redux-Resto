@@ -2,6 +2,10 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Rating from "components/ui-components/rating";
+import { Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { transferMealData } from "store/meals-reducer/meals.actions";
+import { useDispatch } from "react-redux";
 
 export interface IMeal {
   name: string;
@@ -11,13 +15,17 @@ export interface IMeal {
   actionTitle: string;
   cls: string;
   rating: number;
+  id?: string
 }
 export default function Meal(props: IMeal) {
-  const { action } = props;
-
+  const { name, image, description, rating, action, id} = props;
+  const dispatch = useDispatch()
+  
   function onAction() {
-    const { name, image, description, rating } = props;
-    action({ name, image, description, rating });
+    action({ name, image, description, rating , id});
+  }
+  function openMealPage() {
+    dispatch(transferMealData({name, image, description, rating, id}))
   }
   return (
     <Card className="col-lg-4">
@@ -25,9 +33,14 @@ export default function Meal(props: IMeal) {
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>{props.description}</Card.Text>
-        <Button variant={props.cls || "primary"} onClick={onAction}>
-          {props.actionTitle}
-        </Button>
+          <Row>
+            <Button variant={props.cls || "primary"} onClick={onAction}>
+              {props.actionTitle}
+            </Button>
+            <Link className={'ml-auto'} to={`/meal/${id}`} onClick={openMealPage}>
+              More Info
+            </Link>
+          </Row>
         <Rating stars={props.rating} />
       </Card.Body>
     </Card>

@@ -18,10 +18,21 @@ export function clearMealsAction() {
     type: ACTIONS.CLEAR_MEALS,
   };
 }
-
 export function getMealsFromServerDone(payload: Array<any>) {
   return {
     type: ACTIONS.GET_MEALS_FROM_SERVER_DONE,
+    payload,
+  };
+}
+export function transferMealData(payload: any) {
+  return {
+    type: ACTIONS.TRANSFER_MEAL_DATA,
+    payload,
+  };
+}
+export function addComment(payload: any) {
+  return {
+    type: ACTIONS.ADD_COMMENT,
     payload,
   };
 }

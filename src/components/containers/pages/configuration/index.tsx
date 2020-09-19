@@ -22,8 +22,8 @@ export default function ConfigurationPage() {
       <span style={{ color: starsColor }}> Selected color </span>
 
       <div>
-        {configButtonsColor.map((color) => {
-          return <ButtonWrapper color={color} />;
+        {configButtonsColor.map((color, i) => {
+          return <ButtonWrapper key={i} color={color} />;
         })}
       </div>
     </div>

@@ -44,6 +44,7 @@ export default function OrdersPage() {
         {orders.map((meal: any) => {
           return (
             <Meal
+              key={meal.name}
               {...meal}
               cls="danger"
               actionTitle="Remove"
@@ -57,7 +58,6 @@ export default function OrdersPage() {
 
   function getTotalCal() {
     const total = orders.reduce((total: number, order: any) => {
-      console.log(parseInt(order.calories));
       if (isNaN(parseInt(order.calories))) return total;
       return total + parseInt(order.calories);
     }, 0);
