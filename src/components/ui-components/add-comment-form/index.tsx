@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { Button, Form, FormControl } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment } from 'store/meals-reducer/meals.actions'
+import { addCommentAction } from 'store/comments-reducer/comments.actions';
 
 
 export default function AddComment() {
-    const state = useSelector((state: any) => state.mealsReducer.mealPageData.currentMealDisplayed)
+    const relatedMeal = useSelector((state: any) => state.mealsReducer.mealToPresent.id)
     const dispatch = useDispatch()
-    const initialState: any = {name: '', comment: '', mealID: state.id}
+    const initialState: any = {userName: '', userComment: '', relatedMealID: relatedMeal}
     const [localState, setLocalState] = useState(initialState)
 
-    function handleChange({target}: any, action: any) {
-        setLocalState({...localState, [action]: target.value})
+    function handleChange(e: any) {
+        setLocalState({...localState, [e.target.name]: e.target.value})
     }
     function handleSubmit(e: any) {
         e.preventDefault()
-        dispatch(addComment(localState))
+        dispatch(addCommentAction(localState))
     }
     return (
         <Form className={'w-75 m-auto'}>
-            <FormControl className={'mb-2'} size={'sm'} type={'text'} name={'name'} placeholder={'Your name ?'} onChange={(e) => {handleChange(e, e.target.name)}}/>
-            <FormControl className={'mb-2'} size={'sm'} type={'text'} name={'comment'} placeholder={'Your comment ...'} onChange={(e) => {handleChange(e, e.target.name)}}/>
+            <FormControl className={'mb-2'} size={'sm'} type={'text'} name={'userName'} placeholder={'Your name ?'} onChange={(e) => {handleChange(e)}}/>
+            <FormControl className={'mb-2'} size={'sm'} type={'text'} name={'userComment'} placeholder={'Your comment ...'} onChange={(e) => {handleChange(e)}}/>
             <Button size={'sm'} onClick={(e) => {handleSubmit(e)}}>Comment</Button>
         </Form>
     )

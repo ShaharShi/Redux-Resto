@@ -24,15 +24,9 @@ export function getMealsFromServerDone(payload: Array<any>) {
     payload,
   };
 }
-export function transferMealData(payload: any) {
+export function presentMealAction(payload: any) {
   return {
-    type: ACTIONS.TRANSFER_MEAL_DATA,
-    payload,
-  };
-}
-export function addComment(payload: any) {
-  return {
-    type: ACTIONS.ADD_COMMENT,
+    type: ACTIONS.PRESENT_MEAL,
     payload,
   };
 }

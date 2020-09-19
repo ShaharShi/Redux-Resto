@@ -7,34 +7,38 @@ import { useSelector } from 'react-redux';
 import styles from 'components/containers/pages/meal-page/style.module.css'
 
 export default function MealPage() {
-    const state = useSelector((state: any) => state.mealsReducer.mealPageData)
-    const { currentMealDisplayed } = state
+    const mealsState = useSelector((state: any) => state.mealsReducer.mealToPresent)
+    const commentsState = useSelector((state: any) => state.commentsReducer.commentsContainer)
     const currentCommentedMeal = getMealComments()
 
     function getMealComments() {
-        return state.commentedMeals.filter((meal: any) => meal.mealID === currentMealDisplayed.id)
+        console.log(mealsState)
+        console.log(commentsState)
+        return commentsState.filter((comment: any) => comment.relatedMealID === mealsState.id)
     }
     useEffect(() => {
         getMealComments()
-    }, [state.commentedMeals])
+    }, [commentsState])
 
     return (
         <div className={'container mt-5'}>
             <Row>
                 <Col>
                     <Row className={'flex-column align-content-center text-center border-right p-5'}>
-                        <img src={currentMealDisplayed.image} className={'w-100 align-self-center'}/>
-                        <h4>{currentMealDisplayed.name}</h4>
-                        <Rating stars={currentMealDisplayed.rating}/>
+                        <img src={mealsState.image} className={'w-100 align-self-center'}/>
+                        <h4>{mealsState.name}</h4>
+                        <Rating stars={mealsState.rating}/>
                         <p className={'pt-5'}>
-                            {currentMealDisplayed.description}
+                            {mealsState.description}
                         </p>
                     </Row>
                 </Col>
                 <Col>
                     <Row>
                         <div className={styles.commentArea}> 
-                            {!currentCommentedMeal.length ? 'Be the first to add a comment ...' : currentCommentedMeal.map((commentData: any, i: any) => {return <MealComment key={i} {...commentData} />})}
+                            {!currentCommentedMeal.length ?
+                             'Be the first to add a comment ...' :
+                             currentCommentedMeal.map((commentData: any, i: any) => {return <MealComment key={i} {...commentData} />})}
                         </div>
                     </Row>
                     <Row>

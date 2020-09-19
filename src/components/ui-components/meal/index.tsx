@@ -4,8 +4,8 @@ import Button from "react-bootstrap/Button";
 import Rating from "components/ui-components/rating";
 import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { transferMealData } from "store/meals-reducer/meals.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { presentMealAction } from "store/meals-reducer/meals.actions";
 
 export interface IMeal {
   name: string;
@@ -24,8 +24,8 @@ export default function Meal(props: IMeal) {
   function onAction() {
     action({ name, image, description, rating , id});
   }
-  function openMealPage() {
-    dispatch(transferMealData({name, image, description, rating, id}))
+  function presentMeal() {
+    dispatch(presentMealAction({name, image, description, rating, id}))
   }
   return (
     <Card className="col-lg-4">
@@ -37,7 +37,7 @@ export default function Meal(props: IMeal) {
             <Button variant={props.cls || "primary"} onClick={onAction}>
               {props.actionTitle}
             </Button>
-            <Link className={'ml-auto'} to={`/meal/${id}`} onClick={openMealPage}>
+            <Link className={'ml-auto'} to={`/meal/${id}`} onClick={presentMeal}>
               More Info
             </Link>
           </Row>

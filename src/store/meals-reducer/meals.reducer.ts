@@ -5,10 +5,7 @@ export const initMealsState = {
   meals: [],
   orders: [],
   users: [],
-  mealPageData: {
-    currentMealDisplayed: {},
-    commentedMeals: []
-  },
+  mealToPresent: {},
   lastOrderTime: "220-07-01",
   anotherConfigurationOption: { startsColor: "red" },
 };
@@ -38,14 +35,12 @@ export default function mealsReducer(state: any = initMealsState, action: IProps
       const { payload } = action;
       return { ...state, meals: payload };
     }
-    case ACTIONS.TRANSFER_MEAL_DATA: {
-      const { payload } = action
-      return {...state,  mealPageData: { ...state.mealPageData, currentMealDisplayed: payload}}
+    
+    case ACTIONS.PRESENT_MEAL: {
+      const { payload } = action;
+      return { ...state, mealToPresent: payload };
     }
-    case ACTIONS.ADD_COMMENT: {
-      const { payload } = action
-      return {...state, mealPageData : {...state.mealPageData, commentedMeals: [...state.mealPageData.commentedMeals, payload]}}
-    }
+
     default: {
       return state;
     }
