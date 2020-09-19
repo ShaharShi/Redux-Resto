@@ -5,6 +5,7 @@ import AboutPage from "../pages/about";
 import OrdersPage from "../pages/orders";
 import ReportsPage from "../pages/reports";
 import ConfigurationPage from "../pages/configuration";
+import MealPage from "../pages/meal-page";
 
 export const routesConfiguration: Array<IRoute> = [
   {
@@ -42,5 +43,12 @@ export const routesConfiguration: Array<IRoute> = [
     path: "/config",
     name: "Configuration",
     isVisible: true,
+  },
+  {
+    order: 0,
+    component: MealPage,
+    path: "/meal/:mealID",
+    name: "",
+    isVisible: false,
   },
 ];

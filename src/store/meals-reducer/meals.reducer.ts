@@ -1,10 +1,11 @@
 import { IMeal } from "components/ui-components/meal";
-import { ACTIONS } from "./actions.config";
+import { ACTIONS } from "../actions.config";
 
 export const initMealsState = {
   meals: [],
   orders: [],
   users: [],
+  mealToPresent: {},
   lastOrderTime: "220-07-01",
   anotherConfigurationOption: { startsColor: "red" },
 };
@@ -14,7 +15,7 @@ interface IProps {
   payload: any; // what am i sending
 }
 
-export default function mealsReducer(state: any, action: IProps) {
+export default function mealsReducer(state: any = initMealsState, action: IProps) {
   switch (action.type) {
     case ACTIONS.ADD_MEAL: {
       const { payload } = action;
@@ -34,8 +35,13 @@ export default function mealsReducer(state: any, action: IProps) {
       const { payload } = action;
       return { ...state, meals: payload };
     }
+    
+    case ACTIONS.PRESENT_MEAL: {
+      const { payload } = action;
+      return { ...state, mealToPresent: payload };
+    }
+
     default: {
-      console.log("i am here! this is not your reducer!!");
       return state;
     }
   }

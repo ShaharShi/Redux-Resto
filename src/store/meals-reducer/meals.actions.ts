@@ -1,4 +1,4 @@
-import { ACTIONS } from "./actions.config";
+import { ACTIONS } from "../actions.config";
 import { IMeal } from "components/ui-components/meal";
 
 export function addMealAction(payload: IMeal) {
@@ -18,10 +18,15 @@ export function clearMealsAction() {
     type: ACTIONS.CLEAR_MEALS,
   };
 }
-
 export function getMealsFromServerDone(payload: Array<any>) {
   return {
     type: ACTIONS.GET_MEALS_FROM_SERVER_DONE,
+    payload,
+  };
+}
+export function presentMealAction(payload: any) {
+  return {
+    type: ACTIONS.PRESENT_MEAL,
     payload,
   };
 }

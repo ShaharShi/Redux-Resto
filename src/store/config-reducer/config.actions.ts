@@ -1,4 +1,4 @@
-import { ACTIONS } from "./actions.config";
+import { ACTIONS } from "../actions.config";
 
 export function changeStarsColor(payload: string) {
   return {
