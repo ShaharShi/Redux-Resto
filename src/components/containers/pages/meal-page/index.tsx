@@ -12,8 +12,6 @@ export default function MealPage() {
     const currentCommentedMeal = getMealComments()
 
     function getMealComments() {
-        console.log(mealsState)
-        console.log(commentsState)
         return commentsState.filter((comment: any) => comment.relatedMealID === mealsState.id)
     }
     useEffect(() => {
